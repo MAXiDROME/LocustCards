@@ -3,7 +3,7 @@
 class LocustCard {
 
     private $token='';
-    private $apiurl='https://cards.ltart.ru/api/';
+    private $apiurl='https://locustcards.ru/api/';
     private $debug=FALSE;
 
     private function get_func_argNames ($funcName) {
