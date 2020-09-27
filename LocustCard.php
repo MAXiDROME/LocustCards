@@ -45,7 +45,7 @@ class LocustCard {
 
     }
 
-    function add_operation ($card, $value, $date='', $comment='') {
+    function add_operation ($card, $value_add, $value_sub, $uid, $date='', $comment='') {
         $params=$this->get_func_argNames(__FUNCTION__);
         $query="?" . __FUNCTION__ . "&token=" . $this->token;
         foreach ($params as $param) $query.="&" . $param . "=" . urlencode(${$param});
@@ -202,7 +202,19 @@ class LocustCard {
 
     }
 
-    function delete_operation ($operation_id) {
+    function delete_operation ($uid) {
+        $params=$this->get_func_argNames(__FUNCTION__);
+        $query="?" . __FUNCTION__ . "&token=" . $this->token;
+        foreach ($params as $param) $query.="&" . $param . "=" . urlencode(${$param});
+
+        $answer=json_decode(file_get_contents($this->apiurl . $query), TRUE);
+        if ($this->debug) return array("query"=>$this->apiurl . $query, "answer"=>$answer);
+
+        return $answer;
+
+    }
+
+    function confirm_operation ($uid) {
         $params=$this->get_func_argNames(__FUNCTION__);
         $query="?" . __FUNCTION__ . "&token=" . $this->token;
         foreach ($params as $param) $query.="&" . $param . "=" . urlencode(${$param});
